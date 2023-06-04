@@ -1,0 +1,106 @@
+ALGORITHM problem 1
+
+VAR
+arr1 : ARRAY_OF INTEGER;
+arr2 : ARRAY_OF INTEGER;
+Sum : INTEGER
+i : INTEGER
+j : INTEGER
+
+BEGIN
+
+Sum = 0
+FOR i FROM 0 TO arr2.length STEP 1 DO
+   FOR j FROM 0 TO arr1.length STEP 1 DO
+    IF (arr1[j]<>arr2[i]) THEN 
+    Sum = Sum + arr2[i]
+    END_IF
+   END_FOR
+END_FOR
+
+FOR j FROM 0 TO arr1.length STEP 1 DO
+   FOR i FROM 0 TO arr2.length STEP 1 DO
+    IF (arr2[i]<>arr1[j]) THEN 
+    Sum = Sum + arr1[j]
+    END_IF
+   END_FOR
+END_FOR
+
+write (Sum)
+
+END
+
+
+
+
+
+
+ALGORITHM problem2 Dot product
+
+PROCEDURE dot_product(v1,v2 : ARRAY_OF INTEGER ,ps:INTEGER)
+VAR
+i,n,m:INTEGER
+BEGIN
+ps:=0;
+n:=v1.length-1
+m:=v2.length-1
+
+IF (n<>m) THEN
+    Write("You can't calculate the ps of 2 vectors with diffrent length.")
+END_IF
+FOR i FROM 0 TO n STEP 1  DO
+    ps:= ps + v1[i]v2[i]
+END_FOR
+END
+
+// function instead of a procedure.
+
+FUNCTION dot_productame(v1,v2 : ARRAY_OF INTEGER ,ps:INTEGER) : INTEGER
+VAR
+i,n,m:INTEGER
+BEGIN
+    ps:=0;
+n:=v1.length-1
+m:=v2.length-1
+
+IF (n<>m) THEN
+    Write("You can't calculate the ps of 2 vectors with diffrent length.")
+END_IF
+FOR i FROM 0 TO n STEP 1  DO
+    ps:= ps + v1[i]v2[i]
+END_FOR
+    RETURN ps ;
+END
+
+
+// ALGORITHM with procedure
+ALGORITHM orth_vectors
+VAR
+    v: ARRAY_OF ARRAY
+    i,j : INTEGER
+BEGIN
+    FOR i FROM 0 TO v.length-1 STEP 1  DO
+        FOR j FROM i+1 TO v.length-1 STEP 1  DO
+           dot_product(v[i],v[j],ps) 
+IF (ps = 0) THEN
+    Write(v[i] ,"and" v[j] , "are orthogonal")
+END_IF
+        END_FOR
+    END_FOR
+END
+
+// ALGORITHM with function
+ALGORITHM orth_vectors
+VAR
+    v: ARRAY_OF ARRAY
+    i,j : INTEGER
+BEGIN
+    FOR i FROM 0 TO v.length-1 STEP 1  DO
+        FOR j FROM i+1 TO v.length-1 STEP 1  DO
+           dot_productame(v[i],v[j],ps) 
+IF (ps = 0) THEN
+    Write(v[i] ,"and" v[j] , "are orthogonal")
+END_IF
+        END_FOR
+    END_FOR
+END
